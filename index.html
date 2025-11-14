@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Portal</title>
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* --- 1. Navigation Menu --- */
+        header {
+            background-color: #232f3e;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: #4a5c70;
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page switching logic: Hide all pages by default */
+        .page {
+            display: none;
+        }
+        /* Show only the 'active' page */
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- 2. Form & Validation Styling --- */
+        .form-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        form {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        form h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        form div {
+            margin-bottom: 1rem;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        /* Validation Error Message Styling */
+        .error-message {
+            color: #d93025; /* Red for errors */
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #febd69; /* Amazon-like yellow */
+            border: 1px solid #a88734;
+            color: #111;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #f7b550;
+        }
+
+        /* --- 3. Dashboard Items Styling --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .dashboard-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-item h3 {
+            margin-top: 0;
+        }
+        
+        .dashboard-item ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .dashboard-item li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #232f3e;
+            color: #aaa;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MyStore</h1>
+        <nav>
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#products" class="nav-link">Product Items</a>
+            <a href="#account" class="nav-link">My Account</a>
+            <a href="#forms" class="nav-link">Login/Register</a>
+            <a href="#contact" class="nav-link">Contact Us</a>
+            <a href="#about" class="nav-link">About Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="page active">
+            <h2>Welcome to MyStore</h2>
+            <p>Your one-stop shop for everything you need. Browse our products, check your orders, and more.</p>
+            
+        </section>
+
+        <section id="products" class="page">
+            <h2>Our Products</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-item">Product 1</div>
+                <div class="dashboard-item">Product 2</div>
+                <div class="dashboard-item">Product 3</div>
+                <div class="dashboard-item">Product 4</div>
+            </div>
+        </section>
+
+        <section id="account" class="page">
+            <h2>My Account Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-item">
+                    <h3>Orders List</h3>
+                    <ul>
+                        <li>Order #12345 - Status: Shipped</li>
+                        <li>Order #12344 - Status: Processing</li>
+                        <li>Order #12342 - Status: Delivered</li>
+                    </ul>
+                </div>
+                <div class="dashboard-item">
+                    <h3>Wishlist</h3>
+                    <ul>
+                        <li>Wireless Mouse</li>
+                        <li>Mechanical Keyboard</li>
+                    </ul>
+                </div>
+                <div class="dashboard-item">
+                    <h3>My Comments & Reviews</h3>
+                    <p>"Great product!" - on Wireless Mouse</p>
+                    <p>"Very clicky." - on Mechanical Keyboard</p>
+                </div>
+                <div class="dashboard-item">
+                    <h3>Customer Care</h3>
+                    <p>Have an issue? <a href="#">Contact Support</a></p>
+                </div>
+                <div class="dashboard-item">
+                    <h3>Reporting Options</h3>
+                    <p><a href="#">Report an order issue</a></p>
+                    <p><a href="#">Report a seller</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="forms" class="page">
+            <h2>Account Access</h2>
+            <div class="form-container">
+                
+                <form id="registerForm" onsubmit="return validateRegister()">
+                    <h3>Create an Account</h3>
+                    <div>
+                        <label for="regUser">Username</label>
+                        <input type="text" id="regUser" name="regUser">
+                        <div id="regUserError" class="error-message"></div>
+                    </div>
+                    <div>
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" name="regEmail">
+                        <div id="regEmailError" class="error-message"></div>
+                    </div>
+                    <div>
+                        <label for="regPass">Password</label>
+                        <input type="password" id="regPass" name="regPass">
+                        <div id="regPassError" class="error-message"></div>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+
+                <form id="loginForm" onsubmit="return validateLogin()">
+                    <h3>Login</h3>
+                    <div>
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="loginEmail">
+                        <div id="loginEmailError" class="error-message"></div>
+                    </div>
+                    <div>
+                        <label for="loginPass">Password</label>
+                        <input type="password" id="loginPass" name="loginPass">
+                        <div id="loginPassError" class="error-message"></div>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </section>
+        
+        <section id="contact" class="page">
+            <h2>Contact Us</h2>
+            <p>You can reach us at support@mystore.com</p>
+        </section>
+        
+        <section id="about" class="page">
+            <h2>About Us</h2>
+            <p>We are a fictional e-commerce store created for a class project.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyStore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- 1. Page Navigation Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+
+            // Set default page
+            showPage('home');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop the browser from following the #hash
+                    
+                    const targetId = link.getAttribute('href').substring(1); // Get 'home' from '#home'
+                    showPage(targetId);
+
+                    // Update active link styling
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    if (page.id === pageId) {
+                        page.classList.add('active');
+                    } else {
+                        page.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // --- 2. Form Validation Logic ---
+
+        // Helper function to show/clear errors
+        function setError(fieldId, message) {
+            document.getElementById(fieldId + "Error").textContent = message;
+        }
+        function clearError(fieldId) {
+            document.getElementById(fieldId + "Error").textContent = "";
+        }
+        function clearAllErrors() {
+             document.querySelectorAll('.error-message').forEach(el => el.textContent = "");
+        }
+
+        // Validate Registration Form
+        function validateRegister() {
+            clearAllErrors();
+            let isValid = true;
+            
+            const username = document.getElementById('regUser').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPass').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+
+            // Username validation
+            if (username.length < 3) {
+                setError('regUser', 'Username must be at least 3 characters long.');
+                isValid = false;
+            }
+            
+            // Email validation
+            if (!emailRegex.test(email)) {
+                setError('regEmail', 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                setError('regPass', 'Password must be at least 6 characters long.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Registration Successful! (Note: No data is saved in this demo.)');
+            }
+
+            return false; // Prevent actual form submission
+        }
+
+        // Validate Login Form
+        function validateLogin() {
+            clearAllErrors();
+            let isValid = true;
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPass').value;
+            
+            // Email validation
+            if (email.length === 0) {
+                setError('loginEmail', 'Email is required.');
+                isValid = false;
+            }
+
+            // Password validation
+            if (password.length === 0) {
+                setError('loginPass', 'Password is required.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Login Successful! (Note: No data is saved in this demo.)');
+                // You could redirect to the account page here
+                // showPage('account'); // This function is not in this scope, but shows the idea
+            }
+
+            return false; // Prevent actual form submission
+        }
+
+    </script>
+</body>
+</html>
